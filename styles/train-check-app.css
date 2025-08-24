@@ -1,0 +1,79 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* Train Check App Component Styles */
+:host {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+.input-section {
+  margin: 20px auto;
+  width: 800px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: monospace;
+  box-sizing: border-box;
+}
+
+button {
+  background: #0060df;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #003eaa;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.results {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f9f9fa;
+  border-radius: 4px;
+}
+
+#sha-type-holder {
+  border: 0;
+  padding: 0;
+  margin-block: 5px;
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+}
+
+#sha-type-holder > input[type="radio"] {
+  margin-block: 0;
+}
+
+#sha-type-holder > input[type="radio"]:not(:nth-child(1)) {
+  margin-inline-start: 15px;
+}

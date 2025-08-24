@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "New Tab Train-hop Station",
+  "version": "1.0.0",
+  "description": "A tool to assess Firefox Nightly New Tab code train-hop readiness",
+  
+  "permissions": [
+    "storage"
+  ],
+  
+  "host_permissions": [
+    "https://api.github.com/*",
+    "https://lando.moz.tools/*",
+    "https://treeherder.mozilla.org/*"
+  ],
+  
+  "background": {
+    "scripts": ["scripts/background.js"]
+  },
+  
+  "action": {
+    "default_title": "New Tab Train-hop Station"
+  },
+  
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}
