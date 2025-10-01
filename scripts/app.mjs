@@ -3,7 +3,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import {LitElement, html, css} from "/vendor/lit3/lit-all.min.js";
+import "./jobs-report.mjs";
 import "./locales-results.mjs";
+import "./rollouts-report.mjs";
 
 const SHA_TYPE_HG = "hg";
 const SHA_TYPE_GIT = "git";
@@ -54,7 +56,10 @@ class TrainCheckApp extends LitElement {
           <p>Git SHA: ${this.results.sha}</p>
           ${this.results.hgSha ? html`<p>Mercurial SHA: ${this.results.hgSha}</p>` : ''}
           <p>Status: ${this.results.status}</p>
-          <locales-results .betaStartDate=${this.results.revisionData.betaStartDate} .releaseStartDate=${this.results.revisionData.releaseStartDate} .localesReport=${this.results.revisionData.localesReport} .ftlComparison=${this.results.revisionData.ftlComparison} />
+          <report-summary .results=${this.results}></report-summary>
+          <jobs-report .pushData=${this.results.revisionData.pushData}></jobs-report>
+          <rollouts-report .rollouts=${this.results.revisionData.rolloutData}></rollouts-report>
+          <locales-results .betaStartDate=${this.results.revisionData.betaStartDate} .releaseStartDate=${this.results.revisionData.releaseStartDate} .localesReport=${this.results.revisionData.localesReport} .ftlComparison=${this.results.revisionData.ftlComparison} .sha=${this.results.sha}></locales-results>
         </div>
       ` : ''}
     `;

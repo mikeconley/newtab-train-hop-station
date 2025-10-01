@@ -1,3 +1,11 @@
 h2.blocked {
   color: red;
 }
+
+ol {
+  list-style: none;
+  font-family: Monospace;
+  max-height: 500px;
+  width: fit-content;
+  overflow-y: auto;
+}

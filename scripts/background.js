@@ -8,6 +8,8 @@ const LANDO_GIT2HG_API = "https://lando.moz.tools/api/git2hg/firefox";
 const LANDO_HG2GIT_API = "https://lando.moz.tools/api/hg2git/firefox";
 const TREEHERDER_API = "https://treeherder.mozilla.org/api";
 const TRAIN_SCHEDULE_API = "https://whattrainisitnow.com/api/release/schedule";
+const BETA_JOB_SYMBOL = "Mbc-beta";
+const RELEASE_JOB_SYMBOL = "Mbc-release";
 
 /**
  * Handle toolbar button clicks - open the extension page
@@ -169,7 +171,7 @@ async function getPushData(hgSha) {
   if (!pushResponse.ok) {
     throw new Error(`Failed to fetch push data from Treeherder: ${pushResponse.status}`);
   }
-  
+
   const pushData = await pushResponse.json();
   
   if (!pushData.results || pushData.results.length === 0) {
@@ -189,10 +191,71 @@ async function getPushData(hgSha) {
   
   // Transform job arrays into objects using property names
   const trainhopJobs = transformJobsData(jobsData);
-  
+
+  // Produce a summary on whether or not it looks like our CI jobs are passing.
+  // The rule here is that if there are only successes for a platform, then
+  // the platform is in "green" state.
+  //
+  // If there is 1 or more pending jobs for a platform, it is in "yellow"
+  // state.
+  //
+  // If there is only 1 failure per job type for a platform, it is in a
+  // "yellow" state, unless there is also a green job of that type for the
+  // platform (in which case, it's in the green state).
+  //
+  // If there are 2 or more failures per job type for a platform, and no green
+  // jobs of that type, then the platform is in the red state.
+  let platforms = new Map();
+  for (trainhopJob of trainhopJobs) {
+    const PLATFORM_KEY = `${trainhopJob.platform} (${trainhopJob.platform_option})`;
+    let status = platforms.get(PLATFORM_KEY) || {
+      [BETA_JOB_SYMBOL]: {
+        passing: 0,
+        failing: 0,
+        unknown: 0,
+      },
+      [RELEASE_JOB_SYMBOL]: {
+        passing: 0,
+        failing: 0,
+        unknown: 0,
+      }
+    };
+
+    let jobType = status[trainhopJob.job_type_symbol];
+    if (trainhopJob.result == "success") {
+      jobType.passing++;
+    } else if (trainhopJob.result == "testfailed") {
+      jobType.failing++;
+    } else {
+      jobType.unknown++;
+    }
+
+    platforms.set(PLATFORM_KEY, status);
+  }
+
+  let summary = {};
+
+  for (let [platformKey, status] of platforms) {
+    summary[platformKey] = {
+      [BETA_JOB_SYMBOL]: "unknown",
+      [RELEASE_JOB_SYMBOL]: "unknown",
+    };
+
+    for (let jobSymbol of [BETA_JOB_SYMBOL, RELEASE_JOB_SYMBOL]) {
+      if (status[jobSymbol].passing) {
+        summary[platformKey][jobSymbol] = "passing";
+      } else if (status[jobSymbol].failing > 1 && !status[jobSymbol].unknown) {
+        summary[platformKey][jobSymbol] = "failing";
+      } else {
+        summary[platformKey][jobSymbol] = "unknown";
+      }
+    }
+  }
+
   return {
     push: push,
-    trainhopJobs: trainhopJobs
+    trainhopJobs: trainhopJobs,
+    summary,
   };
 }
 
@@ -268,12 +331,13 @@ async function getRevisionData(gitSha) {
   const hgSha = await getHgSha(gitSha);
 
   // Fetch all data in parallel
-  const [pushData, newtabFtlInfo, webextGlueFtlInfo, localesReport, mergeDates] = await Promise.all([
+  const [pushData, newtabFtlInfo, webextGlueFtlInfo, localesReport, mergeDates, rolloutData] = await Promise.all([
     getPushData(hgSha),
     getGitHubFileInfo(gitSha, "browser/locales/en-US/browser/newtab/newtab.ftl"),
     getGitHubFileInfo(gitSha, "browser/extensions/newtab/webext-glue/locales/en-US/browser/newtab/newtab.ftl"),
     getGitHubFile(gitSha, "browser/extensions/newtab/webext-glue/locales/locales-report.json"),
-    getBetaAndReleaseDates()
+    getBetaAndReleaseDates(),
+    getRolloutData()
   ]);
 
   // Compare the last modified dates of the two newtab.ftl files
@@ -287,6 +351,7 @@ async function getRevisionData(gitSha) {
     localesReport: JSON.parse(localesReport.decodedContent),
     betaStartDate: mergeDates.betaStartDate,
     releaseStartDate: mergeDates.releaseStartDate,
+    rolloutData,
   };
 }
 
@@ -369,4 +434,23 @@ function compareNewtabFtlFileInfos(newtabFtlInfo, webextGlueFtlInfo) {
     message,
     daysDiff
   };
+}
+
+async function getRolloutData() {
+  const EXPERIMENTER_QUERY_URL = "https://experimenter.services.mozilla.com/api/v8/experiments/?application=firefox-desktop&feature_config=newtabTrainhopAddon";
+  const JQ_QUERY = `[.[] | select(.featureIds[] == "newtabTrainhopAddon") | select(.endDate == null) | { "slug": .slug, "userFacingName": .userFacingName, bucketConfig: .bucketConfig, channels: .channels }]`;
+  try {
+    let jsResponse = await fetch(EXPERIMENTER_QUERY_URL);
+    if (!jsResponse.ok) {
+      return [];
+    }
+
+    let responseJSON = await jsResponse.json();
+
+    let jqWeb = await jq;
+    let result = jqWeb.json(responseJSON, JQ_QUERY);
+    return result;
+  } catch (e) {
+    return [];
+  }
 }

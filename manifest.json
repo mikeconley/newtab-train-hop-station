@@ -13,11 +13,15 @@
     "https://lando.moz.tools/*",
     "https://treeherder.mozilla.org/*"
   ],
-  
+
   "background": {
-    "scripts": ["scripts/background.js"]
+    "scripts": ["scripts/background.js", "vendor/jq-web/0.6.1/jq.js"]
   },
-  
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'"
+  },
+
   "action": {
     "default_title": "New Tab Train-hop Station"
   },
