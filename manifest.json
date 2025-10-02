@@ -3,7 +3,17 @@
   "name": "New Tab Train-hop Station",
   "version": "0.1.0",
   "description": "A tool to assess Firefox Nightly New Tab code train-hop readiness",
-  
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "newtab-trainhop-station@mikeconley.ca",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+
   "permissions": [
     "storage"
   ],
