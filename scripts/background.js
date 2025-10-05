@@ -71,7 +71,7 @@ async function handleMessage(message) {
  * @returns {Promise<string>} The SHA of the most recent commit
  */
 async function getLatestSha() {
-  const response = await fetch(`${FIREFOX_REPO_API}/commits`);
+  const response = await fetch(`${FIREFOX_REPO_API}/commits`, { credentials: "omit" });
   if (!response.ok) {
     throw new Error(`Failed to fetch commits: ${response.status}`);
   }
@@ -90,7 +90,7 @@ async function getLatestSha() {
  * @returns {Promise<string>} The validated commit SHA
  */
 async function validateSha(sha) {
-  const response = await fetch(`${FIREFOX_REPO_API}/commits/${sha}`);
+  const response = await fetch(`${FIREFOX_REPO_API}/commits/${sha}`, { credentials: "omit" });
   if (!response.ok) {
     if (response.status === 404) {
       throw new Error(`SHA ${sha} not found in repository`);
@@ -117,7 +117,7 @@ async function getHgSha(gitSha) {
   }
 
   // Fetch from Lando API
-  const response = await fetch(`${LANDO_GIT2HG_API}/${gitSha}`);
+  const response = await fetch(`${LANDO_GIT2HG_API}/${gitSha}`, { credentials: "omit" });
   if (!response.ok) {
     throw new Error(`Failed to convert Git SHA to Mercurial: ${response.status}`);
   }
@@ -146,7 +146,7 @@ async function getGitSha(hgSha) {
   }
 
   // Fetch from Lando API
-  const response = await fetch(`${LANDO_HG2GIT_API}/${hgSha}`);
+  const response = await fetch(`${LANDO_HG2GIT_API}/${hgSha}`, { credentials: "omit" });
   if (!response.ok) {
     throw new Error(`Failed to convert Mercurial SHA to Git: ${response.status}`);
   }
@@ -167,7 +167,7 @@ async function getGitSha(hgSha) {
  */
 async function getPushData(hgSha) {
   // First, get the push data to extract the push ID
-  const pushResponse = await fetch(`${TREEHERDER_API}/project/mozilla-central/push/?full=true&count=10&revision=${hgSha}`);
+  const pushResponse = await fetch(`${TREEHERDER_API}/project/mozilla-central/push/?full=true&count=10&revision=${hgSha}`, { credentials: "omit" });
   if (!pushResponse.ok) {
     throw new Error(`Failed to fetch push data from Treeherder: ${pushResponse.status}`);
   }
@@ -182,7 +182,7 @@ async function getPushData(hgSha) {
   const pushId = push.id;
   
   // Then, get the trainhop jobs for this push ID
-  const jobsResponse = await fetch(`${TREEHERDER_API}/jobs/?job_group_symbol=nt-trainhop&push_id=${pushId}`);
+  const jobsResponse = await fetch(`${TREEHERDER_API}/jobs/?job_group_symbol=nt-trainhop&push_id=${pushId}`, { credentials: "omit" });
   if (!jobsResponse.ok) {
     throw new Error(`Failed to fetch trainhop jobs from Treeherder: ${jobsResponse.status}`);
   }
@@ -290,8 +290,8 @@ function transformJobsData(jobsData) {
 async function getBetaAndReleaseDates() {
   try {
     const [betaResponse, releaseResponse] = await Promise.all([
-      fetch(`${TRAIN_SCHEDULE_API}/?version=beta`),
-      fetch(`${TRAIN_SCHEDULE_API}/?version=release`)
+      fetch(`${TRAIN_SCHEDULE_API}/?version=beta`, { credentials: "omit" }),
+      fetch(`${TRAIN_SCHEDULE_API}/?version=release`, { credentials: "omit" })
     ]);
 
     let betaStartDate = null;
@@ -362,7 +362,7 @@ async function getRevisionData(gitSha) {
  * @returns {Promise<Object>} The file data from GitHub API
  */
 async function getGitHubFile(gitSha, filePath) {
-  const response = await fetch(`${FIREFOX_REPO_API}/contents/${filePath}?ref=${gitSha}`);
+  const response = await fetch(`${FIREFOX_REPO_API}/contents/${filePath}?ref=${gitSha}`, { credentials: "omit" });
   if (!response.ok) {
     if (response.status === 404) {
       throw new Error(`File not found: ${filePath} at ${gitSha}`);
@@ -388,7 +388,7 @@ async function getGitHubFile(gitSha, filePath) {
  * @returns {Promise<Object>} The file data from GitHub API
  */
 async function getGitHubFileInfo(gitSha, filePath) {
-  const response = await fetch(`${FIREFOX_REPO_API}/commits?sha=${gitSha}&path=${filePath}&per_page=1`);
+  const response = await fetch(`${FIREFOX_REPO_API}/commits?sha=${gitSha}&path=${filePath}&per_page=1`, { credentials: "omit" });
   if (!response.ok) {
     if (response.status === 404) {
       throw new Error(`Failed to find commit data for file SHA ${fileData.sha}`);
