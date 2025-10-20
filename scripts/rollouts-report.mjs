@@ -24,11 +24,13 @@ class RolloutsReport extends LitElement {
     }
 
     return html`
-      ${matchingRollouts.map(rollout => {
-        const NIMBUS_URL = `https://experimenter.services.mozilla.com/nimbus/${rollout.slug}/summary/`;
-        const PERCENTAGE = rollout.bucketConfig.count / rollout.bucketConfig.total * 100;
-        return html`<a href="${NIMBUS_URL}" target="_blank">${rollout.slug} - ${rollout.userFacingName}</a> at <strong>${PERCENTAGE}%</strong></a>`
-      })}
+      <ol>
+        ${matchingRollouts.map(rollout => {
+          const NIMBUS_URL = `https://experimenter.services.mozilla.com/nimbus/${rollout.slug}/summary/`;
+          const PERCENTAGE = rollout.bucketConfig.count / rollout.bucketConfig.total * 100;
+          return html`<li><a href="${NIMBUS_URL}" target="_blank">${rollout.slug} - ${rollout.userFacingName}</a> at <strong>${PERCENTAGE}%</strong></a></li>`
+        })}
+      </ol>
     `;
   }
 
