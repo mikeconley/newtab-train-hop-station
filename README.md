@@ -2,7 +2,7 @@
 
 A tool for assessing the viability of a Firefox New Tab train-hop
 
-Learn more about [Newtab train-hopping](https://firefox-source-docs.mozilla.org/browser/extensions/newtab/docs/v2-system-addon/train_hopping.html)
+Learn more about [New Tab train-hopping](https://firefox-source-docs.mozilla.org/browser/extensions/newtab/docs/v2-system-addon/train_hopping.html)
 
 ## Development
 
