@@ -12,7 +12,6 @@
   },
   "license": "MPL-2.0",
   "author": "Mike Conley",
-  "type": "commonjs",
   "main": "background.js",
   "scripts": {
     "build": "web-ext build -s ./",

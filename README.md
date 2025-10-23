@@ -1,4 +1,4 @@
-# Newtab Train Hop Station
+# New Tab Train Hop Station
 
 A tool for assessing the viability of a Firefox New Tab train-hop
 
@@ -10,7 +10,7 @@ Requirements: The current [LTS](https://github.com/nodejs/LTS) (long term suppor
 
 Run the following commands:
 
-1. Install node depenencies
+1. Install node dependencies
 ```bash
     $ npm install
 ```
@@ -25,4 +25,4 @@ Run the following commands:
 
 - [License](./LICENSE)
 - [Train-hopping for New Tab](https://firefox-source-docs.mozilla.org/browser/extensions/newtab/docs/v2-system-addon/train_hopping.html)
-- [Browser extensions on MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)
+- [Browser extensions on MDN](https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions)
