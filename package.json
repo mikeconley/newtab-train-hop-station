@@ -1,0 +1,24 @@
+{
+  "name": "newtab-train-hop-station",
+  "version": "0.2.1",
+  "description": "A tool for assessing the viability of a Firefox New Tab train-hop",
+  "homepage": "https://github.com/mikeconley/newtab-train-hop-station#readme",
+  "bugs": {
+    "url": "https://github.com/mikeconley/newtab-train-hop-station/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeconley/newtab-train-hop-station.git"
+  },
+  "license": "MPL-2.0",
+  "author": "Mike Conley",
+  "type": "commonjs",
+  "main": "background.js",
+  "scripts": {
+    "build": "web-ext build -s ./",
+    "dev": "web-ext run -s ./"
+  },
+  "devDependencies": {
+    "web-ext": "^9.0.0"
+  }
+}
