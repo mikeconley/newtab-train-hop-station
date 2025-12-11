@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Tab Train Hops</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script type="module">
+        import { html, render } from 'https://cdn.jsdelivr.net/npm/lit-html@3.1.0/+esm';
+
+        const GITHUB_BASE = 'https://github.com/mozilla-firefox/firefox/tree/';
+        const HG_BASE = 'https://hg-edge.mozilla.org/mozilla-central/file/';
+
+        let trainHops = [];
+        let hideUndeployed = document.getElementById('hide-undeployed')?.checked ?? true;
+
+        const formatCell = (value) => {
+            if (value === 'N/A') return html`<span class="na">N/A</span>`;
+            if (value === 'Pending') return html`<span class="pending">Pending</span>`;
+            return value;
+        };
+
+        const shaLink = (sha, baseUrl, title) => html`
+            <a href="${baseUrl}${sha}" target="_blank" class="sha" title="${title}">
+                ${sha.substring(0, 12)}
+            </a>
+        `;
+
+        const tableRow = (hop) => {
+            const isUndeployed = hop.deployed_release_25 === 'N/A' && hop.deployed_release_100 === 'N/A';
+            const shouldHide = isUndeployed && hideUndeployed;
+
+            return html`
+                <tr class="${shouldHide ? 'hidden-row' : ''}">
+                    <td>${hop.version}</td>
+                    <td class="name">${hop.name}</td>
+                    <td>${shaLink(hop.git_sha, GITHUB_BASE, 'View on GitHub')}</td>
+                    <td>${shaLink(hop.mercurial_sha, HG_BASE, 'View on Mercurial')}</td>
+                    <td>${formatCell(hop.deployed_release_25)}</td>
+                    <td>${formatCell(hop.deployed_release_100)}</td>
+                    <td>${formatCell(hop.deployed_beta_100)}</td>
+                    <td class="notes">${hop.notes}</td>
+                </tr>
+            `;
+        };
+
+        const renderTable = () => {
+            const rows = trainHops.map(hop => tableRow(hop));
+            render(html`${rows}`, document.getElementById('table-body'));
+        };
+
+        const showUI = () => {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('filter-controls').style.display = 'block';
+            document.getElementById('data-table').style.display = 'table';
+        };
+
+        const showError = (message) => {
+            document.getElementById('loading').innerHTML =
+                `<span style="color: #cf222e;">Error loading data: ${message}</span>`;
+        };
+
+        fetch('train-hops.yaml')
+            .then(r => r.text())
+            .then(yaml => {
+                const data = jsyaml.load(yaml);
+                trainHops = data.train_hops.sort((a, b) => b.version.localeCompare(a.version));
+
+                renderTable();
+
+                document.getElementById('hide-undeployed').addEventListener('change', (e) => {
+                    hideUndeployed = e.target.checked;
+                    renderTable();
+                });
+
+                showUI();
+            })
+            .catch(err => showError(err.message));
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f6f8fa;
+        }
+        h1 {
+            color: #24292f;
+            border-bottom: 1px solid #d0d7de;
+            padding-bottom: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #d0d7de;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f6f8fa;
+            font-weight: 600;
+            color: #24292f;
+            position: sticky;
+            top: 0;
+        }
+        tr:hover {
+            background-color: #f6f8fa;
+        }
+        td {
+            vertical-align: top;
+        }
+        .sha {
+            font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+            font-size: 12px;
+            color: #0969da;
+        }
+        .name {
+            font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        .notes {
+            max-width: 400px;
+            line-height: 1.5;
+        }
+        .na {
+            color: #656d76;
+            font-style: italic;
+        }
+        .pending {
+            color: #bf8700;
+            font-weight: 600;
+        }
+        #loading {
+            text-align: center;
+            padding: 40px;
+            color: #656d76;
+        }
+        .filter-controls {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .filter-controls label {
+            cursor: pointer;
+            user-select: none;
+        }
+        .filter-controls input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        tr.hidden-row {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>New Tab Train Hops</h1>
+    <div id="loading">Loading train hop data...</div>
+    <div class="filter-controls" style="display:none;" id="filter-controls">
+        <label>
+            <input type="checkbox" id="hide-undeployed" checked>
+            Hide undeployed builds (N/A for Release 25% and 100%)
+        </label>
+    </div>
+    <table id="data-table" style="display:none;">
+        <thead>
+            <tr>
+                <th>Version</th>
+                <th>Name</th>
+                <th>Git SHA</th>
+                <th>Mercurial SHA</th>
+                <th>Release 25%</th>
+                <th>Release 100%</th>
+                <th>Beta 100%</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+    </table>
+</body>
+</html>

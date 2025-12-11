@@ -1,0 +1,90 @@
+train_hops:
+  - version: 141.0.20250612.145700
+    name: newtab-141.0.0-build3
+    git_sha: ddac54abeda53460fb8bbd73964b505f98ddf7ec
+    mercurial_sha: 38c0da99155f48368a184fe60e352259535fa464
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: This was one of our early test builds, testing the ShipIt mechanism for building and signing the XPI.
+
+  - version: 143.0.20250805.140919
+    name: newtab-143.0.0-build1
+    git_sha: 031fb86f50ca9a075af819c514114539ec8a9f60
+    mercurial_sha: f53bcb3c2e3fae0b95f52a06e685589110c5fe34
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: This was another early test build, which was deployed to a subset of the Beta population to test the deployment and rollback mechanism. It never went to the release channel.
+
+  - version: 144.0.20250912.133732
+    name: newtab-144.0.0-build1
+    git_sha: 15d09695ef9b37d892036cf09f40c24863fa2ab4
+    mercurial_sha: 35d78885fd6e51b8cc6063754904d9b4ef5eb24a
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: This was another test build of some kind that doesn't look like it was deployed anywhere.
+
+  - version: 145.0.20250919.173227
+    name: newtab-145.0.0-build1
+    git_sha: 4d5eae1eccb3b383b4a251a679a821012307daa7
+    mercurial_sha: 05e47f461c5c4a00692c9af9d362bd451dcee502
+    deployed_release_25: 25/09/2025
+    deployed_release_100: 02/10/2025
+    deployed_beta_100: 01/10/2025
+    notes: This was our first production train-hop ever.
+
+  - version: 145.1.20251008.231506
+    name: newtab-145.1.0-build1
+    git_sha: 2d38cd5bd7d7958137dd5b4f97aef2f7185a0eb1
+    mercurial_sha: da5bff21c5c7a34178f2412db66ffe8998ec2e54
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: This appears to have been built but never deployed.
+
+  - version: 145.1.20251009.134757
+    name: newtab-145.2.0-build1
+    git_sha: b30a9b734819436853abf4eba6d768037514b3f6
+    mercurial_sha: db417e3c201ae76a4a2c156a88cb53188cf477b6
+    deployed_release_25: 16/10/2025
+    deployed_release_100: 20/10/2025
+    deployed_beta_100: N/A
+    notes: This was deployed to Release to Firefox 144, and never needed to be deployed to Beta because the XPI was cut just before the merge occurred, so Beta had 145.2.0 as the built-in version.
+
+  - version: 146.0.20251107.60212
+    name: newtab-146.0.0-build1
+    git_sha: 2e0c5ee7b4bbab4a26c1ac00749031c942c365e5
+    mercurial_sha: a48e25ac0fe0846918b13a9eb607a152c63bbe3a
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: This appears to have never been deployed - probably because QA found a bug that needed to be fixed.
+
+  - version: 147.0.20251114.194929
+    name: newtab-147.0.0-build1
+    git_sha: 3b9fd7d6dbf2f8bc0a428887a0611a66ebcbf0bd
+    mercurial_sha: 4e885473cb08ec97b42aa99ea83cc2485a463d31
+    deployed_release_25: 24/11/2025
+    deployed_release_100: 26/11/2025
+    deployed_beta_100: 27/11/2025
+    notes: This train-hop contained a number of accessibility and polish fixes, and got our widgets into a state where we felt comfortable making them available in Firefox Labs.
+
+  - version: 148.0.20251209.214749
+    name: newtab-148.0.0-build1
+    git_sha: 7496c8515212669451d7e775a00c2be07da38ca5
+    mercurial_sha: 7c6e6dc03dc0fd5049e5cba70fcf669cb2e772d7
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: This was the first candidate for the final 2025 train-hop, but QA found some issues, and there were problems with some OHTTP / MARS pathways, as well as some sponsored topsites frecency experiment things that we wanted to include. So we spun up a new one.
+
+  - version: 148.0.20251211.63751
+    name: newtab-148.0.0-build2
+    git_sha: 54da8f6bfead7871ca89f2cb18323af5f00d9620
+    mercurial_sha: 82d903e7fd6125fcca3b63ed7ed2de0b473eef4a
+    deployed_release_25: Pending
+    deployed_release_100: Pending
+    deployed_beta_100: Pending
+    notes: This train-hop includes fixes for the issues found in 148.0.20251209.214749. It is currently being QA tested. The goal is to deploy it to 25% of the release population on 16/12/2025.
