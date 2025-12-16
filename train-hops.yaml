@@ -84,7 +84,7 @@ train_hops:
     name: newtab-148.0.0-build2
     git_sha: 54da8f6bfead7871ca89f2cb18323af5f00d9620
     mercurial_sha: 82d903e7fd6125fcca3b63ed7ed2de0b473eef4a
-    deployed_release_25: Pending
+    deployed_release_25: 16/12/2025
     deployed_release_100: Pending
     deployed_beta_100: Pending
-    notes: This train-hop includes fixes for the issues found in 148.0.20251209.214749. It is currently being QA tested. The goal is to deploy it to 25% of the release population on 16/12/2025.
+    notes: This train-hop includes fixes for the issues found in 148.0.20251209.214749. It was deployed to 25% of the release population on 16/12/2025. (Note that 147.0.20251114.194929 began ramping down on the same day)
