@@ -93,7 +93,7 @@ train_hops:
     name: newtab-149.0.0-build1
     git_sha: 566d45b812404ca3d1874a3ab7f6a071ab6c5fe2
     mercurial_sha: caa037c3068b676922535eb88d2608015aed6653
-    deployed_release_25: Pending
-    deployed_release_100: Pending
-    deployed_beta_100: Pending
-    notes: See https://mozilla-hub.atlassian.net/wiki/spaces/FPS/pages/2138374170/HNT+147+Train+Hop for details on what is included.
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: This was the first candidate for the first 2026 train-hop, but QA found some issues (https://mozilla-hub.atlassian.net/browse/QA-4752?focusedCommentId=1233820) that, despite a green report, gave us pause. We're going to spin out a new XPI to do a smaller set of tests on, and not send this one out.
