@@ -97,3 +97,12 @@ train_hops:
     deployed_release_100: N/A
     deployed_beta_100: N/A
     notes: This was the first candidate for the first 2026 train-hop, but QA found some issues (https://mozilla-hub.atlassian.net/browse/QA-4752?focusedCommentId=1233820) that, despite a green report, gave us pause. We're going to spin out a new XPI to do a smaller set of tests on, and not send this one out.
+
+  - version: 149.1.20260121.51415
+    name: newtab-149.1.0-build1
+    git_sha: 0ba3af42be7fcfb0773fbf057c5b67277d3aa399
+    mercurial_sha: f0b42fcd1bcab924abe3b603e759d7bd9fb8ee97
+    deployed_release_25: Pending
+    deployed_release_100: Pending
+    deployed_beta_100: Pending
+    notes: Our second candidate for our first 2026 train-hop, to address the issues that QA found in 149.0.20260113.173112 (particularly https://bugzilla.mozilla.org/show_bug.cgi?id=2011247).
