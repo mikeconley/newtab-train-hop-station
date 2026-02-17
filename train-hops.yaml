@@ -102,7 +102,7 @@ train_hops:
     name: newtab-149.1.0-build1
     git_sha: 0ba3af42be7fcfb0773fbf057c5b67277d3aa399
     mercurial_sha: f0b42fcd1bcab924abe3b603e759d7bd9fb8ee97
-    deployed_release_25: 09/02/2026 (to 5%) 10/02/2026 (to 25%)
+    deployed_release_25: 10/02/2026
     deployed_release_100: 11/02/2026
     deployed_beta_100: 11/02/2026
-    notes: Our second candidate for our first 2026 train-hop, to address the issues that QA found in 149.0.20260113.173112 (particularly https://bugzilla.mozilla.org/show_bug.cgi?id=2011247). This train-hop was aborted at 25% rollout on 22/01/2026 due to a sudden startup crash spike (https://bugzilla.mozilla.org/show_bug.cgi?id=2012009). That crash was eventually fixed in 147.0.3, and the train-hop was rescheduled for 09/02/2026. This initially rolled out to 5% to ensure that the crashes did not recur.
+    notes: Our second candidate for our first 2026 train-hop, to address the issues that QA found in 149.0.20260113.173112 (particularly https://bugzilla.mozilla.org/show_bug.cgi?id=2011247). This train-hop was aborted at 25% rollout on 22/01/2026 due to a sudden startup crash spike (https://bugzilla.mozilla.org/show_bug.cgi?id=2012009). That crash was eventually fixed in 147.0.3, and the train-hop was rescheduled for 09/02/2026. This initially rolled out to 5% on 09/02/2026 to ensure that the crashes did not recur. The crashes did not recur.
