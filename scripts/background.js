@@ -443,18 +443,23 @@ function compareNewtabFtlFileInfos(newtabFtlInfo, webextGlueFtlInfo) {
 }
 
 async function getRolloutData() {
-  const EXPERIMENTER_QUERY_URL = "https://experimenter.services.mozilla.com/api/v8/experiments/?application=firefox-desktop&feature_config=newtabTrainhopAddon";
-  const JQ_QUERY = `[.[] | select(.featureIds[] == "newtabTrainhopAddon") | select(.endDate == null) | { "slug": .slug, "userFacingName": .userFacingName, bucketConfig: .bucketConfig, channels: .channels }]`;
+  const EXPERIMENTER_QUERY_URL = "https://experimenter.services.mozilla.com/api/v8/experiments/?status=Live&application=firefox-desktop&feature_config=newtabTrainhopAddon";
   try {
-    let jsResponse = await fetch(EXPERIMENTER_QUERY_URL);
-    if (!jsResponse.ok) {
+    let response = await fetch(EXPERIMENTER_QUERY_URL);
+    if (!response.ok) {
       return [];
     }
 
-    let responseJSON = await jsResponse.json();
+    let responseJSON = await response.json();
+    let result = responseJSON.map(
+      ({ slug, userFacingName, bucketConfig, channels }) => ({
+        slug,
+        userFacingName,
+        bucketConfig,
+        channels,
+      })
+    );
 
-    let jqWeb = await jq;
-    let result = jqWeb.json(responseJSON, JQ_QUERY);
     return result;
   } catch (e) {
     return [];

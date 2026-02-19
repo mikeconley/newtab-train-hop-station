@@ -25,11 +25,7 @@
   ],
 
   "background": {
-    "scripts": ["scripts/background.js", "vendor/jq-web/0.6.1/jq.js"]
-  },
-
-  "content_security_policy": {
-    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'"
+    "scripts": ["scripts/background.js"]
   },
 
   "action": {
