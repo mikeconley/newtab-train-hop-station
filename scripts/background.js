@@ -8,8 +8,8 @@ const LANDO_GIT2HG_API = "https://lando.moz.tools/api/git2hg/firefox";
 const LANDO_HG2GIT_API = "https://lando.moz.tools/api/hg2git/firefox";
 const TREEHERDER_API = "https://treeherder.mozilla.org/api";
 const TRAIN_SCHEDULE_API = "https://whattrainisitnow.com/api/release/schedule";
-const BETA_JOB_SYMBOL = "Mbc-beta";
-const RELEASE_JOB_SYMBOL = "Mbc-release";
+const RELEASE_JOB_GROUP_SYMBOL = "M-trainhop-rel";
+const BETA_JOB_GROUP_SYMBOL = "M-trainhop-beta";
 
 /**
  * Handle toolbar button clicks - open the extension page
@@ -180,17 +180,28 @@ async function getPushData(hgSha) {
   
   const push = pushData.results[0];
   const pushId = push.id;
-  
-  // Then, get the trainhop jobs for this push ID
-  const jobsResponse = await fetch(`${TREEHERDER_API}/jobs/?job_group_symbol=nt-trainhop&push_id=${pushId}`, { credentials: "omit" });
-  if (!jobsResponse.ok) {
-    throw new Error(`Failed to fetch trainhop jobs from Treeherder: ${jobsResponse.status}`);
+
+  // As of bug 2001438, the trainhop jobs are spread out across two
+  // job_group_symbols: M-trainhop-rel and M-trainhop-beta.
+
+
+  // First, get the trainhop jobs for this push ID for release.
+  const releaseJobsResponse = await fetch(`${TREEHERDER_API}/jobs/?job_group_symbol=${RELEASE_JOB_GROUP_SYMBOL}&push_id=${pushId}`, { credentials: "omit" });
+  if (!releaseJobsResponse.ok) {
+    throw new Error(`Failed to fetch release trainhop jobs from Treeherder: ${releaseJobsResponse.status}`);
   }
-  
-  const jobsData = await jobsResponse.json();
-  
+
+  const releaseJobsData = await releaseJobsResponse.json();
+
+  const betaJobsResponse = await fetch(`${TREEHERDER_API}/jobs/?job_group_symbol=${BETA_JOB_GROUP_SYMBOL}&push_id=${pushId}`, { credentials: "omit" });
+  if (!betaJobsResponse.ok) {
+    throw new Error(`Failed to fetch beta trainhop jobs from Treeherder: ${betaJobsResponse.status}`);
+  }
+
+  const betaJobsData = await betaJobsResponse.json();
+
   // Transform job arrays into objects using property names
-  const trainhopJobs = transformJobsData(jobsData);
+  const trainhopJobs = transformJobsData(releaseJobsData.job_property_names, [...releaseJobsData.results, ...betaJobsData.results]);
 
   // Produce a summary on whether or not it looks like our CI jobs are passing.
   // The rule here is that if there are only successes for a platform, then
@@ -209,25 +220,25 @@ async function getPushData(hgSha) {
   for (trainhopJob of trainhopJobs) {
     const PLATFORM_KEY = `${trainhopJob.platform} (${trainhopJob.platform_option})`;
     let status = platforms.get(PLATFORM_KEY) || {
-      [BETA_JOB_SYMBOL]: {
+      [BETA_JOB_GROUP_SYMBOL]: {
         passing: 0,
         failing: 0,
         unknown: 0,
       },
-      [RELEASE_JOB_SYMBOL]: {
+      [RELEASE_JOB_GROUP_SYMBOL]: {
         passing: 0,
         failing: 0,
         unknown: 0,
       }
     };
 
-    let jobType = status[trainhopJob.job_type_symbol];
+    let jobSymbol = status[trainhopJob.job_group_symbol];
     if (trainhopJob.result == "success") {
-      jobType.passing++;
+      jobSymbol.passing++;
     } else if (trainhopJob.result == "testfailed") {
-      jobType.failing++;
+      jobSymbol.failing++;
     } else {
-      jobType.unknown++;
+      jobSymbol.unknown++;
     }
 
     platforms.set(PLATFORM_KEY, status);
@@ -237,11 +248,11 @@ async function getPushData(hgSha) {
 
   for (let [platformKey, status] of platforms) {
     summary[platformKey] = {
-      [BETA_JOB_SYMBOL]: "unknown",
-      [RELEASE_JOB_SYMBOL]: "unknown",
+      [BETA_JOB_GROUP_SYMBOL]: "unknown",
+      [RELEASE_JOB_GROUP_SYMBOL]: "unknown",
     };
 
-    for (let jobSymbol of [BETA_JOB_SYMBOL, RELEASE_JOB_SYMBOL]) {
+    for (let jobSymbol of [BETA_JOB_GROUP_SYMBOL, RELEASE_JOB_GROUP_SYMBOL]) {
       if (status[jobSymbol].passing) {
         summary[platformKey][jobSymbol] = "passing";
       } else if (status[jobSymbol].failing > 1 && !status[jobSymbol].unknown) {
@@ -262,20 +273,15 @@ async function getPushData(hgSha) {
 /**
  * Transforms Treeherder jobs data from array format to object format.
  * Maps job_property_names to corresponding indices in each result array.
+ * @param {Object} jobPropertyNames - A mapping of indices to property names.
  * @param {Object} jobsData - The raw jobs data from Treeherder
  * @returns {Array<Object>} Array of job objects with named properties
  */
-function transformJobsData(jobsData) {
-  if (!jobsData.results || !jobsData.job_property_names) {
-    return [];
-  }
-  
-  const propertyNames = jobsData.job_property_names;
-  
-  return jobsData.results.map(jobArray => {
+function transformJobsData(jobPropertyNames, jobsData) {
+  return jobsData.map(jobArray => {
     const jobObject = {};
     
-    propertyNames.forEach((propertyName, index) => {
+    jobPropertyNames.forEach((propertyName, index) => {
       jobObject[propertyName] = jobArray[index];
     });
     

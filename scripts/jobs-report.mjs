@@ -4,8 +4,10 @@
 
 import {LitElement, html, css} from "/vendor/lit3/lit-all.min.js";
 
-const BETA_JOB_SYMBOL = "Mbc-beta";
-const RELEASE_JOB_SYMBOL = "Mbc-release";
+const RELEASE_JOB_GROUP_SYMBOL = "M-trainhop-rel";
+const BETA_JOB_GROUP_SYMBOL = "M-trainhop-beta";
+const TREEHERDER_URL = "https://treeherder.mozilla.org/jobs?repo=mozilla-central&searchStr=trainhop&revision=";
+
 const SYMBOL_MAP = {
   "unknown": "\u{1F7E1}",
   "passing": "\u{1F7E2}",
@@ -23,13 +25,14 @@ const SYMBOL_MAP = {
   }
 
   #renderPlatformRow(platform, platformSummary) {
-    const BETA_SYMBOL = SYMBOL_MAP[platformSummary[BETA_JOB_SYMBOL]];
-    const RELEASE_SYMBOL = SYMBOL_MAP[platformSummary[RELEASE_JOB_SYMBOL]];
+    const BETA_SYMBOL = SYMBOL_MAP[platformSummary[BETA_JOB_GROUP_SYMBOL]];
+    const RELEASE_SYMBOL = SYMBOL_MAP[platformSummary[RELEASE_JOB_GROUP_SYMBOL]];
+    const PUSH_URL = `${TREEHERDER_URL}${this.pushData.push.revision}`;
     return html`
       <tr>
-        <td>${platform}</td>
-        <td><span title="${platformSummary[BETA_JOB_SYMBOL]}">${BETA_SYMBOL}</span></td>
-        <td><span title="${platformSummary[RELEASE_JOB_SYMBOL]}">${RELEASE_SYMBOL}</span></td>
+        <td><a href="${PUSH_URL}" target="_blank">${platform}</a></td>
+        <td><span title="${platformSummary[BETA_JOB_GROUP_SYMBOL]}">${BETA_SYMBOL}</span></td>
+        <td><span title="${platformSummary[RELEASE_JOB_GROUP_SYMBOL]}">${RELEASE_SYMBOL}</span></td>
       </tr>
     `;
   }

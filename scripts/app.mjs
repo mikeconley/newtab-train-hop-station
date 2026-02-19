@@ -158,7 +158,7 @@ class TrainCheckApp extends LitElement {
         sha: gitSha,
         hgSha: hgSha,
         revisionData,
-        status: "Ready for implementation"
+        status: "Successfully retrieved train-hop data"
       };
     } catch (error) {
       this.results = {
