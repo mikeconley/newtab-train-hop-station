@@ -115,3 +115,12 @@ train_hops:
     deployed_release_100: 02/03/2026
     deployed_beta_100: N/A
     notes: This train-hop is primarily geared towards powering the 48-hour activation window experiments driven by the growth team. Since this XPI was cut just before the 149 merge from Nightly to Beta, it will not ship to Beta.
+
+  - version: 150.1.20260304.231049
+    name: newtab-150.1.0-build1
+    git_sha: f856cb35fbcc78b19fdea53899f03d4366e0d690
+    mercurial_sha: 172154e84db6867d7a7c3f25cc209d4333072787
+    deployed_release_25: Pending
+    deployed_release_100: Pending
+    deployed_beta_100: Pending
+    notes: This train-hop is primarily geared towards widget experiments (primarily weather forecast).
