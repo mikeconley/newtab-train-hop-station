@@ -147,6 +147,15 @@ train_hops:
     name: newtab-151.1.0-build1
     git_sha: c05f9afba7e1d02f7324d51b4e9b13c375a733fe
     mercurial_sha: 735b5920f793b5aea575eb0b6b5c34cb37ad9ade
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: This train-hop was cancelled due to missing strings that were removed just before the XPI was cut (bug 2027099). A new XPI will be spun out. This train-hop was primarily driven by a capability to experiment with the default number of shortcuts (total and rows). Notably, it was meant to be the first train-hop to perform a React upgrade, moving us from React 16 to 19.2.0. It also added client-side support for the HNT editor controls for whether follow or block makes sense for a custom section. This was also the first train-hop to include a train-hopped Expo component (asrouter-newtab-message).
+
+  - version: 151.2.20260328.211913
+    name: newtab-151.2.0-build1
+    git_sha: 2e0ee903c41175ebfa1509ba9fb29a56173c0a57
+    mercurial_sha: 2e0ee903c41175ebfa1509ba9fb29a56173c0a57
     deployed_release_25: Pending
     deployed_release_100: Pending
     deployed_beta_100: Pending
