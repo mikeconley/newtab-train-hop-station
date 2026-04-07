@@ -158,5 +158,5 @@ train_hops:
     mercurial_sha: 2e0ee903c41175ebfa1509ba9fb29a56173c0a57
     deployed_release_25: 31/03/2026
     deployed_release_100: 02/04/2026
-    deployed_beta_100: Pending
+    deployed_beta_100: 07/04/2026
     notes: This train-hop is primarily driven by a capability to experiment with the default number of shortcuts (total and rows). Notably, it is meant to be the first train-hop to perform a React upgrade, moving us from React 16 to 19.2.0. It also adds client-side support for the HNT editor controls for whether follow or block makes sense for a custom section. This is also the first train-hop to include a train-hopped Expo component (asrouter-newtab-message).
