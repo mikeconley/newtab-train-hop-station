@@ -165,7 +165,7 @@ train_hops:
     name: newtab-151.4.0-build1
     git_sha: 525a02ab534ece50c79702c9d139855cab226a41
     mercurial_sha: 92535ec66f254fbe2627bbaa2c9936fa83d14ab8
-    deployed_release_25: Pending
+    deployed_release_25: 23/04/2026
     deployed_release_100: Pending
     deployed_beta_100: Pending
     notes: This train-hop is primarily driven to pick up expanded capabilities for asrouter-newtab-message - specifically, the ability to choose different placements on newtab, as well as to suppress the image. This also includes some changes which improves shortcuts ML telemetry.
