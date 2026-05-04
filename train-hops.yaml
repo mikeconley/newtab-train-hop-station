@@ -169,3 +169,12 @@ train_hops:
     deployed_release_100: 27/04/2026
     deployed_beta_100: N/A
     notes: This train-hop is primarily driven to pick up expanded capabilities for asrouter-newtab-message - specifically, the ability to choose different placements on newtab, as well as to suppress the image. This also includes some changes which improves shortcuts ML telemetry.
+
+  - version: 152.0.20260504.33143
+    name: newtab-152.0.0-build2
+    git_sha: 7af61f9b913e4c0221e4c572c1e4f1e937223895
+    mercurial_sha: eba9ec2338872ed92087277ea333e5ba26bb47c9
+    deployed_release_25: Pending (US and DE only)
+    deployed_release_100: Pending (US and DE only)
+    deployed_beta_100: Pending (US and DE only)
+    notes: This train-hop is driven by the need to run an experiment in the US and DE markets with HNT Nova and Widgets enabled by default in order to measure user behaviour impacts. Notably, this will be the first train-hop that is only targeted to SOME regions (US and DE) and not worldwide.
