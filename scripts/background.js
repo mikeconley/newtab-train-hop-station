@@ -379,8 +379,12 @@ async function getGitHubFile(gitSha, filePath) {
   const fileData = await response.json();
 
   // Decode base64 content if it's a file (not a directory)
-  if (fileData.type === "file" && fileData.content) {
-    fileData.decodedContent = atob(fileData.content.replace(/\n/g, ""));
+  if (fileData.type === "file") {
+    if (fileData.content && fileData.encoding == "base64") {
+      fileData.decodedContent = atob(fileData.content.replace(/\n/g, ""));
+    } else if (fileData.encoding == "none") {
+      fileData.decodedContent = await(await fetch(fileData.download_url)).text();
+    }
   }
 
   return fileData;

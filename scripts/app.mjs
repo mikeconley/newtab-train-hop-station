@@ -48,6 +48,7 @@ class TrainCheckApp extends LitElement {
         <button @click=${this.#checkTrainStatus} ?disabled=${this.loading}>
           ${this.loading ? 'Checking...' : 'Check Train Status'}
         </button>
+        <a href="https://mikeconley.github.io/newtab-train-hop-station/" target="_blank">See trainhop history</a>
       </div>
 
       ${this.results ? html`
@@ -57,9 +58,9 @@ class TrainCheckApp extends LitElement {
           ${this.results.hgSha ? html`<p>Mercurial SHA: ${this.results.hgSha}</p>` : ''}
           <p>Status: ${this.results.status}</p>
           <report-summary .results=${this.results}></report-summary>
-          <jobs-report .pushData=${this.results.revisionData.pushData}></jobs-report>
-          <rollouts-report .rollouts=${this.results.revisionData.rolloutData}></rollouts-report>
-          <locales-results .betaStartDate=${this.results.revisionData.betaStartDate} .releaseStartDate=${this.results.revisionData.releaseStartDate} .localesReport=${this.results.revisionData.localesReport} .ftlComparison=${this.results.revisionData.ftlComparison} .sha=${this.results.sha}></locales-results>
+          <jobs-report .pushData=${this.results.revisionData?.pushData}></jobs-report>
+          <rollouts-report .rollouts=${this.results.revisionData?.rolloutData}></rollouts-report>
+          <locales-results .betaStartDate=${this.results.revisionData?.betaStartDate} .releaseStartDate=${this.results.revisionData?.releaseStartDate} .localesReport=${this.results.revisionData?.localesReport} .ftlComparison=${this.results.revisionData?.ftlComparison} .sha=${this.results.sha}></locales-results>
         </div>
       ` : ''}
     `;

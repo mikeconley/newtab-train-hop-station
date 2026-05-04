@@ -104,6 +104,14 @@ class LocalesResults extends LitElement {
     </li>`;
   }
 
+  #fullyTranslated() {
+    let reportKeys = Object.keys(this.localesReport.locales);
+    let fullyTranslated = reportKeys.filter(localeKey => {
+      return this.localesReport.locales[localeKey].errors == null && this.localesReport.locales[localeKey].missing == null
+    });
+    return html`<ul>${fullyTranslated.map(localeKey => html`<li>${localeKey}</li>`)}</ul>`
+  }
+
   render() {
     if (!this.localesReport || !this.ftlComparison) {
       return null;
@@ -115,6 +123,8 @@ class LocalesResults extends LitElement {
     return html`
       <link rel="stylesheet" href="./styles/locales-results.css" />
       <h1>Locales report</h1>
+      <h2>The following locales are fully translated</h2>
+      ${this.#fullyTranslated()}
       <h2 class=${this.#trainhoppingBlocked ? "blocked" : "manual"}>
         ${this.#trainhoppingBlocked
           ? "Train-hopping might be blocked."
