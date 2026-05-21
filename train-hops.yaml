@@ -192,7 +192,7 @@ train_hops:
     name: newtab-152.3.0-build1
     git_sha: 63e94da3c1f47565009db83b6c573a4f725afb7b
     mercurial_sha: 10d009acbf6f0b3d1133ef69563c49a1f69a74e9
-    deployed_release_25: Pending
+    deployed_release_25: 21/05/2026
     deployed_release_100: Pending
     deployed_beta_100: Pending
     notes: This train-hop is targeted to be deployed approximately 2 days after the release of Firefox 151, and includes a number of Nova polish fixes. It also contains the first version of the asrouter-newtab-multistage message component. It also is meant to be deployed to ALL of Release, bringing widget experiment participants and non-experiment participants onto the same train-hop.
