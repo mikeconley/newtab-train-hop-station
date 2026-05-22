@@ -204,4 +204,4 @@ train_hops:
     deployed_release_25: Pending
     deployed_release_100: Pending
     deployed_beta_100: Pending
-    notes: This train-hop is one of a series of once-a-week trainhops that we are performing as part of the leadup to the World Cup release.
+    notes: This train-hop is one of a series of once-a-week trainhops that we are performing as part of the leadup to the World Cup release. Changelist: https://gist.github.com/mikeconley/5e7ce14911a2b80d7356a6ebd72d88ac
