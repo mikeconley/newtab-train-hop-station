@@ -201,7 +201,7 @@ train_hops:
     name: newtab-153.0.0-build1
     git_sha: 0dae7143b975f00b5451ffcd7b461c922a512358
     mercurial_sha: c42bfb05aa4ffb3d62ff2c9038ca67ec8e598761
-    deployed_release_25: Pending
+    deployed_release_25: 27/05/2026 (at 50%, not 25%)
     deployed_release_100: Pending
     deployed_beta_100: Pending
     notes: >
