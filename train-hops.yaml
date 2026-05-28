@@ -208,7 +208,7 @@ train_hops:
       This train-hop is one of a series of once-a-week trainhops that we are performing as part of the leadup to the
       World Cup release. Changelist: https://gist.github.com/mikeconley/5e7ce14911a2b80d7356a6ebd72d88ac
 
-  - version: 153.0.20260521.220634
+  - version: 153.1.20260528.133333
     name: newtab-153.1.0-build1
     git_sha: 6d198f86d48092c4e3a6b37f4578c6480cf02dbc
     mercurial_sha: ee0e0aa2307fae09742d269717b416b918b1e96e
