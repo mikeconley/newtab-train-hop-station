@@ -214,7 +214,7 @@ train_hops:
     mercurial_sha: ee0e0aa2307fae09742d269717b416b918b1e96e
     deployed_release_25: 02/06/2026 (at 50%, not 25%)
     deployed_release_100: 03/06/2026
-    deployed_beta_100: Pending
+    deployed_beta_100: N/A
     notes: >
       This train-hop is the next in a series of once-a-week trainhops that we are performing as part of the leadup to the
       World Cup release. Changelist: https://gist.github.com/mikeconley/80601cccf377b27653ff4be51b02454b
