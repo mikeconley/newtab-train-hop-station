@@ -223,9 +223,9 @@ train_hops:
     name: newtab-153.2.0-build1
     git_sha: 2d8f76852e6336a183fa34ad81f34d19695e5c2d
     mercurial_sha: 35a16471b43384dcf3a79f3617c84f6981ca2abf
-    deployed_release_25: Pending
-    deployed_release_100: Pending
-    deployed_beta_100: Pending
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
     notes: >
       This train-hop is the next in a series of once-a-week trainhops that we are performing as part of the leadup to the
       World Cup release. Changelist: https://gist.github.com/mikeconley/81863dddc605de035dd5414da66df645
