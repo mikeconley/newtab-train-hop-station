@@ -241,3 +241,13 @@ train_hops:
       This train-hop is the next in a series of once-a-week trainhops that we are performing as part of the leadup to the
       World Cup release. Changelist: https://gist.github.com/mikeconley/346e1a91cffbd176d402246d7009ba14 - just changes from cancelled trainhop changelist: https://gist.github.com/mikeconley/67dda74cf045b3f85c10a32b970e0982
 
+  - version: 153.4.20260610.40323
+    name: newtab-153.4.0-build1
+    git_sha: 7e206e2fe7f83081198e46c33ac8a6dd66a65559
+    mercurial_sha: f5c03e86402761a3d2ca14102e94b80241db3f8d
+    deployed_release_25: 11/06/2026 (at 50%, not 25%)
+    deployed_release_100: 12/06/2026
+    deployed_beta_100: N/A
+    notes: >
+      TODO
+
