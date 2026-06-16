@@ -255,6 +255,16 @@ train_hops:
     name: newtab-153.5.0-build1
     git_sha: 8c19f7a4e55320917f6926160295c602874eb5fa
     mercurial_sha: f0a2cfd62179a3a4a636468cb1e66ec48311ac93
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: >
+      TODO
+
+  - version: 153.5.20260615.213953
+    name: newtab-154.0.0-build1
+    git_sha: 6324548f9dced9dd5cc3a8101d62dd776f1249c8
+    mercurial_sha: 73702abaddb07fd0961e3345c64687b1a525389e
     deployed_release_25: Pending
     deployed_release_100: Pending
     deployed_beta_100: N/A
