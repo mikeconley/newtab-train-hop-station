@@ -287,6 +287,6 @@ train_hops:
     mercurial_sha: 3fbd071a3248531d785fee139596abb1be185c33
     deployed_release_25: 25/06/2026 (at 50%, not 25%)
     deployed_release_100: 26/06/2026
-    deployed_beta_100: Pending
+    deployed_beta_100: N/A
     notes: >
       This is an emergency trainhop driven by https://bugzilla.mozilla.org/show_bug.cgi?id=2049800 
