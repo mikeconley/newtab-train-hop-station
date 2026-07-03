@@ -290,3 +290,12 @@ train_hops:
     deployed_beta_100: N/A
     notes: >
       This is an emergency trainhop driven by https://bugzilla.mozilla.org/show_bug.cgi?id=2049800 
+
+  - version: 154.3.20260630.235510
+    name: newtab-154.3.0-build1
+    git_sha: 43aae7a9ab016c3892591a759e48ff73896287e4
+    mercurial_sha: 9311935bcca840e3ac5cdaad2b3dae1f375582f0
+    deployed_release_25: Pending
+    deployed_release_100: Pending
+    deployed_beta_100: Pending
+    notes: Primarily driven to fix bugs https://bugzilla.mozilla.org/show_bug.cgi?id=2051512 and https://bugzilla.mozilla.org/show_bug.cgi?id=2051684
