@@ -313,6 +313,15 @@ train_hops:
     name: newtab-154.7.0-build1
     git_sha: b4b9a39b817bd9e1952c9bc8f16efabffd1875ec
     mercurial_sha: ed918eb6fefea80a50b8b9a4d3bcc162e6a14a2d
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: Get Particle (crossword) and PotD widgets ready to replace WCW. Also includes shortcuts updates. This one was cancelled because of a bug in the about:home startup cache CSP list not matching the other markup CSPs.
+
+  - version: 154.8.20260716.43450
+    name: newtab-154.8.0-build1
+    git_sha: a6ce501c049734e3e12288ec0f85f3d1e26dc94b
+    mercurial_sha: d60bb0935862bf4da80ea392f091cb30cfafa439
     deployed_release_25: Pending
     deployed_release_100: Pending
     deployed_beta_100: Pending
