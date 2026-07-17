@@ -306,7 +306,7 @@ train_hops:
     mercurial_sha: ce0581060c34d52cecf9ee9bd935f012e49830e2
     deployed_release_25: 09/07/2026 (at 50%, not 25%)
     deployed_release_100: 10/07/2026
-    deployed_beta_100: Pending
+    deployed_beta_100: N/A
     notes: Get messages for semi-final wallpapers out (July 14th), and Finals Celebrations, and more. Also some shortcuts changes.
 
   - version: 154.7.20260715.34513
