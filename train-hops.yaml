@@ -324,5 +324,5 @@ train_hops:
     mercurial_sha: d60bb0935862bf4da80ea392f091cb30cfafa439
     deployed_release_25: 16/07/2026 (at 50%, not 25%)
     deployed_release_100: 17/07/2026
-    deployed_beta_100: Pending
+    deployed_beta_100: N/A
     notes: Get Particle (crossword) and PotD widgets ready to replace WCW. Also includes shortcuts updates.
