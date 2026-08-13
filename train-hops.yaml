@@ -331,8 +331,21 @@ train_hops:
     name: newtab-155.0.0-build5
     git_sha: 5243d39ace9a990aae67a43f1fec750796ec35c0
     mercurial_sha: e01d55323713f1234c36450467364e763985a3b3
+    deployed_release_25: N/A
+    deployed_release_100: N/A
+    deployed_beta_100: N/A
+    notes: >
+      De-risking trainhop, since we have haven't done one in a while. We'll QA this, and potentially deploy it to Beta, but aim to roll another XPI next week for actual release deployment. We only want this one to get early signals of broken things.
+      QA discovered S4 issue https://bugzilla.mozilla.org/show_bug.cgi?id=2062621, which prompted us to do a recut.
+
+  - version: 155.1.20260811.195042
+    name: newtab-155.1.0-build1
+    git_sha: 15cbd388feda8aeb143c5c5393f5a146a60fc67d
+    mercurial_sha: 7151679b8deb9bf34ff10cb762a50c6dd482b08b
     deployed_release_25: Pending
     deployed_release_100: Pending
     deployed_beta_100: Pending
     notes: >
       De-risking trainhop, since we have haven't done one in a while. We'll QA this, and potentially deploy it to Beta, but aim to roll another XPI next week for actual release deployment. We only want this one to get early signals of broken things.
+      Includes a fix for https://bugzilla.mozilla.org/show_bug.cgi?id=2062621. 
+
