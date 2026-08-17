@@ -349,3 +349,12 @@ train_hops:
       De-risking trainhop, since we have haven't done one in a while. We'll QA this, and potentially deploy it to Beta, but aim to roll another XPI next week for actual release deployment. We only want this one to get early signals of broken things.
       Includes a fix for https://bugzilla.mozilla.org/show_bug.cgi?id=2062621. QA also did testing against 154.0RC in order to account for the major version bump.
 
+  - version: 156.0.20260816.233558
+    name: newtab-156.0.0-build1
+    git_sha: 7c611117298561f542198076e70e641d4dd080bc
+    mercurial_sha: 2872f5810f11e8e89f45f2589390fc6aa00b98e8
+    deployed_release_25: Pending
+    deployed_release_100: Pending
+    deployed_beta_100: Pending
+    notes: >
+      This trainhop includes updates to UI and spacing that we expect to help with sponsored content impressions (which regressed as part of Nova and the Widgets projects).
