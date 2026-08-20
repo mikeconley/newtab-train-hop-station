@@ -365,8 +365,8 @@ train_hops:
     git_sha: b4230e7ab14b2c83a2231f595ccfa8149e8c11ff
     mercurial_sha: 53e3421d50c99a21a29d1eda7d5ab4bbd90c3b4e
     deployed_release_25: 19/08/2026 (at 50%, not 25%)
-    deployed_release_100: Pending
-    deployed_beta_100: Pending
+    deployed_release_100: 20/08/2026
+    deployed_beta_100: N/A
     notes: >
       This trainhop includes updates to UI and spacing that we expect to help with sponsored content impressions (which regressed as part of Nova and the Widgets projects).
       Includes a fix for https://bugzilla.mozilla.org/show_bug.cgi?id=2063207.
