@@ -380,3 +380,13 @@ train_hops:
     deployed_beta_100: N/A
     notes: >
       This trainhop includes infrastructure for performing 3-2-1 layout experiments.
+
+  - version: 157.0.20260831.183837
+    name: newtab-157.0.0-build1
+    git_sha: 4f14b4a54928c479719ca9becf467b66847f923d
+    mercurial_sha: 3b63573880925f9a91ecf9915c7ed69aa2895098
+    deployed_release_25: Pending
+    deployed_release_100: Pending
+    deployed_beta_100: Pending
+    notes: >
+      Includes auto-minimizing for widgets layout, and the topic navigation strip.
