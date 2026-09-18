@@ -387,6 +387,16 @@ train_hops:
     mercurial_sha: 3b63573880925f9a91ecf9915c7ed69aa2895098
     deployed_release_25: 08/09/2026 (at 50%, not 25%)
     deployed_release_100: 10/09/2026
-    deployed_beta_100: Pending
+    deployed_beta_100: N/A
     notes: >
       Includes auto-minimizing for widgets layout, and the topic navigation strip.
+
+  - version: 158.0.20260913.220257
+    name: newtab-158.0.0-build1
+    git_sha: 9779d0c588762208f33a82c9fc710f81466f6e9e
+    mercurial_sha: fbbae8488047e71c2ba2106487bfe7d75e6eac01
+    deployed_release_25: 16/09/2026 (at 50%, not 25%)
+    deployed_release_100: 17/09/2026
+    deployed_beta_100: N/A
+    notes: >
+      Includes a number of widgets changes, layout variation changes, and prep for https://mozilla-hub.atlassian.net/browse/HNT-2932.
