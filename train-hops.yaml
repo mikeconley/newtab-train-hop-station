@@ -410,3 +410,14 @@ train_hops:
     deployed_beta_100: N/A
     notes: >
       Includes the ability to fully turn off tile_id via Remote Settings.
+
+  - version: 159.0.20260925.223456
+    name: newtab-159.0.0-build1
+    git_sha: f18fb30f923fab7ab59e9b10a5040fffba58527a
+    mercurial_sha: bcb13f0f153f0e9dff782eff515a5349fb83c3a0
+    deployed_release_25: Pending
+    deployed_release_100: Pending
+    deployed_beta_100: Pending
+    notes: >
+      Driven by a need to fix https://bugzilla.mozilla.org/show_bug.cgi?id=2075682, which breaks
+      click and impression events for clients running Fx 157.0 with a 158 newtab trainhop.
