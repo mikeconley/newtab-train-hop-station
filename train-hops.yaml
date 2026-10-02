@@ -421,3 +421,13 @@ train_hops:
     notes: >
       Driven by a need to fix https://bugzilla.mozilla.org/show_bug.cgi?id=2075682, which breaks
       click and impression events for clients running Fx 157.0 with a 158 newtab trainhop.
+
+  - version: 159.1.20261002.163917
+    name: newtab-159.1.0-build1
+    git_sha: 91b7c082495fd66382e0e3d437fa97b27390cf47
+    mercurial_sha: d393f7255dbf290f8adb8b41dce6deb435285e07
+    deployed_release_25: Pending
+    deployed_release_100: Pending
+    deployed_beta_100: Pending
+    notes: >
+      Mainly driven to power some layout experiments (spaces)
