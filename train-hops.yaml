@@ -426,8 +426,8 @@ train_hops:
     name: newtab-159.1.0-build1
     git_sha: 91b7c082495fd66382e0e3d437fa97b27390cf47
     mercurial_sha: d393f7255dbf290f8adb8b41dce6deb435285e07
-    deployed_release_25: Pending
-    deployed_release_100: Pending
+    deployed_release_25: 07/10/2026 (at 50%, not 25%)
+    deployed_release_100: 08/10/2026
     deployed_beta_100: Pending
     notes: >
       Mainly driven to power some layout experiments (spaces)
