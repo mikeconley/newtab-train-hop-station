@@ -431,3 +431,13 @@ train_hops:
     deployed_beta_100: N/A
     notes: >
       Mainly driven to power some layout experiments (spaces)
+
+  - version: 160.0.20261010.194913
+    name: newtab-160.0.0-build1
+    git_sha: 6411c7c9174104c4173a35749f26acdbf268b127
+    mercurial_sha: b70c525a7f7e50baaea341d58b750d4c8849a395
+    deployed_release_25: Pending
+    deployed_release_100: Pending
+    deployed_beta_100: Pending
+    notes: >
+      Mainly driven by a need to deploy widgets to all regions, with region gating, with the fallback condition being "available but off by default"
