@@ -457,7 +457,7 @@ train_hops:
     name: newtab-160.2.0-build1
     git_sha: 35e98823a3482679755c7b9f318dee6cec97ea57
     mercurial_sha: e1da538e4d817f4914a57b5cca733485789124a8
-    deployed_release_25: Pending
+    deployed_release_25: 21/10/2026 (at 50%, not 25%)
     deployed_release_100: Pending
     deployed_beta_100: Pending
     notes: >
