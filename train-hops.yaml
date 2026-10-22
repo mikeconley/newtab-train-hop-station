@@ -458,8 +458,8 @@ train_hops:
     git_sha: 35e98823a3482679755c7b9f318dee6cec97ea57
     mercurial_sha: e1da538e4d817f4914a57b5cca733485789124a8
     deployed_release_25: 21/10/2026 (at 50%, not 25%)
-    deployed_release_100: Pending
-    deployed_beta_100: Pending
+    deployed_release_100: 22/10/2026
+    deployed_beta_100: N/A
     notes: >
       Mainly driven by the stack at https://bugzilla.mozilla.org/show_bug.cgi?id=2079981, which augments the "spaces" layout experiment with another variation.
       This XPI also contains patches that allow registering Glean event extra_keys at runtime (https://bugzilla.mozilla.org/show_bug.cgi?id=2076491).
