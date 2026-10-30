@@ -469,7 +469,7 @@ train_hops:
     git_sha: 5feb1e1025ee05af089198a0678f5ad7a9284b24
     mercurial_sha: 62c130d928c71c7ab4a4bc84ae124c3b899601c5
     deployed_release_25: 28/10/2026 (at 50%, not 25%)
-    deployed_release_100: Pending
+    deployed_release_100: 29/10/2026
     deployed_beta_100: N/A
     notes: >
       Mainly driven by a need to adjust the layout of variant B of the MCAB search bar experiments.
