@@ -473,3 +473,13 @@ train_hops:
     deployed_beta_100: N/A
     notes: >
       Mainly driven by a need to adjust the layout of variant B of the MCAB search bar experiments.
+
+  - version: 161.0.20261102.193311
+    name: newtab-161.0.0-build1
+    git_sha: c456c07567b74194f62bfabc6676457737d0b650
+    mercurial_sha: e876880d9903247a926f7fabd0027d63ca2e1235
+    deployed_release_25: Pending
+    deployed_release_100: Pending
+    deployed_beta_100: Pending
+    notes: >
+      This is being used to power the first release candidate for new layouts on New Tab ("spaces")
