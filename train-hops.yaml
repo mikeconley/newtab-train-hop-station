@@ -478,8 +478,18 @@ train_hops:
     name: newtab-161.0.0-build1
     git_sha: c456c07567b74194f62bfabc6676457737d0b650
     mercurial_sha: e876880d9903247a926f7fabd0027d63ca2e1235
-    deployed_release_25: 06/11/2026 (at 50%, not 25%)
+    deployed_release_25: 05/11/2026 (at 50%, not 25%)
+    deployed_release_100: 06/11/2026
+    deployed_beta_100: N/A
+    notes: >
+      This is being used to power the first release candidate for new layouts on New Tab ("spaces")
+
+  - version: 162.0.20261113.205842
+    name: newtab-162.0.0-build1
+    git_sha: 981db9220a72b5dd143efcae629787d9a3e39337
+    mercurial_sha: bcc7df82cd9e49af50de1f2ff29725fd4518b3b5
+    deployed_release_25: Pending
     deployed_release_100: Pending
     deployed_beta_100: Pending
     notes: >
-      This is being used to power the first release candidate for new layouts on New Tab ("spaces")
+      This adds Kayak and Yahoo widget telemetry, as well as Privacy widget UI updates.
